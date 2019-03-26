@@ -28,19 +28,19 @@ class App extends Component {
                 <ul>
                     <li>
                         <h4>Remove Hydration/Dehydration Concerns</h4>
-                        <p>We are currently constantly hydrating and dehydrating Models between multiple different stores, in this implementation the Model as a <em>prop</em> is immutable, whilst the Model as it's Component <em>state</em> can be edited/altered (exactly like a state controlled Form).</p>
+                        <p>Unlike constantly hydrating and dehydrating Models between multiple different stores, in this implementation the Model as a <em>prop</em> is immutable, whilst the Model as it's Component <em>state</em> can be edited/altered (exactly like a state controlled Form).</p>
                     </li>
                     <li>
                         <h4>Removing Separation of Data/Output</h4>
-                        <p>Where our Components are entirely separate from our Factories/Models, all of the information tied to them almost has to be represented in twice the locations. For example, A Filter Component will have to locally maintain what it's Properties are, it will also have to separately interact and update a FilterModel which actually interacts with the Factory/API. In this implementation, the Filter state is represented only within the Component where it is interacted with (although it can be <em>expressed</em> through whatever configuration of children required).</p>
+                        <p>Unlike where Components are entirely separate from Factories/Models, all of the information tied to them almost has to be represented in twice the locations. For example, A Filter Component will have to locally maintain what it's Properties are, it will also have to separately interact and update a FilterModel which actually interacts with the Factory/API. In this implementation, the Filter state is represented only within the Component where it is interacted with (although it can be <em>expressed</em> through whatever configuration of children required).</p>
                     </li>
                     <li>
-                        <h4>Our Application Has Multiple Personalities</h4>
-                        <p>The approach we are currently taking separates all of our Loading/Data concerns into our TS classes which champion <strong>inheritance</strong>, meanwhile all of our Components are trying to handle their concerns via <strong>composition</strong>.</p>
+                        <h4>Prevent An Application Having Multiple Personalities</h4>
+                        <p>Rather than separating Loading/Data concerns into TS classes which champion <strong>inheritance</strong>, meanwhile all of our Components are trying to handle their concerns via <strong>composition</strong>, we can have a more fluid interaction where both follow the same "laws".</p>
                     </li>
                     <li>
-                        <h4>Greatly Increased Reusability of Component</h4>
-                        <p>Regardless of this implementation, our Component reusability <em>outside of the core UI Components</em> could be much improved. This implementation however does almost require that it be done.</p>
+                        <h4>Greatly Increased Reusability of Components</h4>
+                        <p>This is possible to improve regardless of this implementation, Component reusability <em>outside of the core UI Components</em>, this implementation however does almost require that it be done in such a way.</p>
                     </li>
                 </ul>
             </div>
