@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {CommentFactory} from "./component/factory";
-import {Summary, Detail} from "./component";
+import {Summary, Detail, RebuildableList} from "./component";
 import {CommentModel} from "./component/model";
 
 class App extends Component {
@@ -14,28 +14,22 @@ class App extends Component {
                 <CommentFactory>
                     {
                         ({ models, load }) => (
-                            <ul id={'RebuildableListMock'}>
-
+                            <RebuildableList loadMore={load}>
                                 { models.map((model) => (
-
                                     <CommentModel comment={model}>
                                         {({model, method}) => (
-                                            <li>
-                                                <Summary
-                                                    title={model.name}
-                                                    email={model.email}
-                                                    onClick={method}/>
-                                            </li>
-                                            )}
+                                            <Summary
+                                                title={model.name}
+                                                email={model.email}
+                                                onClick={method}/>
+                                        )}
                                     </CommentModel>
-
                                 ))}
-
-                                <button onClick={load}>Load All</button>
-                            </ul>
+                            </RebuildableList>
                         )
                     }
                 </CommentFactory>
+
                 <h2>Tailoring Factories</h2>
                 <p>Factories themselves can be given props which will resolve different outcomes.</p>
                 <p>In practice these would actually be enclosed in a similar implementation of a <strong>Filter</strong> Component.</p>
