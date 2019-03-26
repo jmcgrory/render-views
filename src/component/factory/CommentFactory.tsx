@@ -6,24 +6,18 @@ const CommentFactory = ({ children, ids = [], message = 'Load More' }: any) => {
 
     const endpoint = ids.length ? `comments/${ids.join(',')}` : 'comments';
 
+
+    // return (
+    //     <Factory endpoint={endpoint}>
+    //         {
+    //             ({ update, models }: any) => models.map((model: any, i: number) => <div>Hello</div>)
+    //         }
+    //     </Factory>
+    // )
+
     return (
         <Factory endpoint={endpoint}>
-            {
-                ({ update, models }: any) => (
-                    <section>
-                        <ol>
-                            {
-                                models.map((model: any, i: number) => (
-                                    <CommentModel key={i} comment={model}>
-                                        { children }
-                                    </CommentModel>
-                                ))
-                            }
-                        </ol>
-                        <button onClick={update}>{ message }</button>
-                    </section>
-                )
-            }
+            {({update, models}:any) => children({ load: update, models: models })}
         </Factory>
     )
 

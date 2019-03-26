@@ -15,9 +15,7 @@ const CommentModel = ({ comment, children }:{ comment: CommentProps, children: a
 
     return (
         <Model>
-        {
-            ({ modelMethod }) => <article>{ children({ model: model, method: modelMethod }) }</article>
-        }
+            { ({ modelMethod }) => children({ model: model, method: modelMethod }) }
         </Model>
     );
 }

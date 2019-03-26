@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {CommentFactory} from "./component/factory";
 import {Summary, Detail} from "./component";
+import {CommentModel} from "./component/model";
 
 class App extends Component {
 
@@ -12,7 +13,27 @@ class App extends Component {
                 <p>The Factory Component configures, loads and exposes the Model Components. From which the relevant Properties and Methods can be combined with whatever child Components we require.</p>
                 <CommentFactory>
                     {
-                        ({ model, method }) => <li><Summary email={model.email} title={model.name} onClick={method} /></li>
+                        ({ models, load }) => (
+                            <ul id={'RebuildableListMock'}>
+
+                                { models.map((model) => (
+
+                                    <CommentModel comment={model}>
+                                        {({model, method}) => (
+                                            <li>
+                                                <Summary
+                                                    title={model.name}
+                                                    email={model.email}
+                                                    onClick={method}/>
+                                            </li>
+                                            )}
+                                    </CommentModel>
+
+                                ))}
+
+                                <button onClick={load}>Load All</button>
+                            </ul>
+                        )
                     }
                 </CommentFactory>
                 <h2>Tailoring Factories</h2>
@@ -20,7 +41,26 @@ class App extends Component {
                 <p>In practice these would actually be enclosed in a similar implementation of a <strong>Filter</strong> Component.</p>
                 <CommentFactory ids={[4]} message={'Load Single'}>
                     {
-                        ({ model, method }) => <Detail id={model.id} title={model.name} content={model.body} email={model.email} onClick={method} />
+                        ({ models, load }) => <article>
+                                {
+                            models.map((model) => {
+                                return <CommentModel comment={model}>
+
+                                    {({ model, method }) => <Detail
+                                        id={model.id}
+                                        title={model.name}
+                                        content={model.body}
+                                        email={model.email}
+                                        onClick={method} />}
+
+                                </CommentModel>
+                            })
+                        }
+
+                        <button onClick={load}>Load Single Comment</button>
+
+                        </article>
+
                     }
                 </CommentFactory>
                 <h2>Benefits</h2>
